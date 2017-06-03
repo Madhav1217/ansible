@@ -1,0 +1,41 @@
+- hosts: group1
+  tasks: 
+       - name: list of all files
+         shell: "ls >> file1.txt"
+         args:
+              chdir: /home/{{user}}
+
+       - name: uninstall the git
+         become: yes 
+         apt: name={{item}} update_cache=no state=absent
+         with_items:
+                    - git
+                    - rar
+                    - tree
+                                            
+       - name: change the permissions the file
+         become: yes
+         file: path=/home/{{user}}/ghouse/madhav.txt owner=root group=root mode=0774
+
+       - name: install the python
+         become: yes 
+         apt: name=python update_cache=yes
+        
+       - name: Create the folder 
+         become: yes
+         file: path=/tomcat state=directory
+         
+       - name: install tomcat
+         become: yes
+         get_url: url="http://mirror.fibergrid.in/apache/tomcat/tomcat-7/v7.0.78/bin/apache-tomcat-7.0.78.tar.gz" dest=/tomcat mode=0777
+
+       - name: create group
+         become: yes
+         group: name=manoj 
+         tags: run
+           
+        
+       - name: create user
+         become: yes
+         user: name=manoj 
+         tags: run 

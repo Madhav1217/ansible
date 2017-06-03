@@ -1,0 +1,31 @@
+- hosts: vm1
+  tasks:
+        - name: install the git
+          become: yes 
+          apt: name=git update_cache=yes
+          
+        - name: install the rar
+          become: yes
+          apt: name=rar update_cache=yes
+        
+        - name: install the tree
+          become: yes
+          apt: name=tree update_cache=yes
+        
+        - name: Creating directory
+          file: path=/home/ubuntu/ghouse state=directory
+        
+        - name: Creating file inside the directory
+          file: path=/home/ubuntu/ghouse/madhav.txt state=touch
+        
+        - name: Delete the file
+          file: path=/home/ubuntu/apache-tomcat-7.0.78.tar.gz state=absent
+
+        - name: Delete manoj folder
+          become: yes
+          file: path=/manoj state=absent
+        
+        - name: change the permissions of the tomcat
+          file: path=/home/ubuntu/apache-tomcat-7.0.78 mode=0400 
+  
+                           
