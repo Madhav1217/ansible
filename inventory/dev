@@ -1,5 +1,5 @@
 [vm1]
-35.154.206.250 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=/var/lib/jenkins/madhav1.pem
+54.172.238.206 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=/var/lib/jenkins/manjunathkey1.pem
 
 
 [group1:children]
